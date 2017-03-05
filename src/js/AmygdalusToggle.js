@@ -1,8 +1,10 @@
 /*eslint no-unused-vars: "off"*/
+/*eslint no-console: "off"*/
 class AmygdalusToggle extends HTMLElement {
   constructor () {
     super()
     this._selected = false
+    console.log(`created: ${this.id}`)
   }
 
   static get observedAttributes() {
@@ -12,10 +14,18 @@ class AmygdalusToggle extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
+    console.group(`attribute change: ${name}`)
+    console.dir(this)
+    console.log(`${name}: \`${oldValue}\` -> \`${newValue}\``)
+    console.log(`this._selected: ${this._selected}`)
+    console.groupEnd()
   }
 
   connectedCallback() {
-
+    console.group(`connected: ${this.id}`)
+    console.dir(this)
+    console.log(`this._selected: ${this._selected}`)
+    console.groupEnd()
   }
 
   get selected() {
