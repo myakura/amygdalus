@@ -26,3 +26,15 @@
 <script>
   window.customElements.define('amygdalus-toggle', AmygdalusToggle)
 </script>
+
+<script>
+  const elements = document.querySelectorAll('amygdalus-toggle')
+
+  elements.forEach(element => {
+    console.group(`test: ${element.id}`)
+    console.assert(element.isConnected, 'element is connected')
+    console.assert(element.hasAttribute('selected'), 'element has `selected` attribute')
+    console.assert(element.selected, 'element is selected')
+    console.groupEnd()
+  })
+</script>
