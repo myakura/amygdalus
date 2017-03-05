@@ -2,6 +2,7 @@
   "name": "amygdalus",
   "version": "1.0.0",
   "scripts": {
+    "eslint": "eslint src",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
