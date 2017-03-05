@@ -1,5 +1,6 @@
 /*eslint no-unused-vars: "off"*/
 /*eslint no-console: "off"*/
+/*eslint indent: "off"*/
 class AmygdalusToggle extends HTMLElement {
   constructor () {
     super()
