@@ -3,7 +3,6 @@
 class AmygdalusToggle extends HTMLElement {
   constructor () {
     super()
-    this._selected = false
     console.log(`created: ${this.id ? this.id : this}`)
   }
 
