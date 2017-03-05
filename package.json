@@ -1,0 +1,17 @@
+{
+  "name": "amygdalus",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/myakura/amygdalus.git"
+  },
+  "author": "Masataka Yakura",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/myakura/amygdalus/issues"
+  },
+  "homepage": "https://github.com/myakura/amygdalus#readme"
+}
