@@ -3,6 +3,8 @@
 class AmygdalusToggle extends HTMLElement {
   constructor () {
     super()
+    this.setAttribute('aria-role', 'button')
+    this.setAttribute('aria-pressed', 'false')
     this._selected = false
     console.log(`created: ${this.id ? this.id : this}`)
   }
@@ -33,10 +35,12 @@ class AmygdalusToggle extends HTMLElement {
     if (value) {
       this._selected = true
       this.setAttribute('selected', '')
+      this.setAttribute('aria-pressed', 'true')
     }
     else {
       this._selected = false
       this.removeAttribute('selected')
+      this.setAttribute('aria-pressed', 'false')
     }
   }
 
