@@ -3,11 +3,14 @@
 class AmygdalusToggle extends HTMLElement {
   constructor () {
     super()
+    this._selected = false
     console.log(`created: ${this.id ? this.id : this}`)
   }
 
   static get observedAttributes() {
-    return []
+    return [
+      'selected'
+    ]
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
@@ -23,13 +26,16 @@ class AmygdalusToggle extends HTMLElement {
   }
 
   get selected() {
-    return this.hasAttribute('selected')
+    this._selected = this.hasAttribute('selected')
+    return this._selected
   }
   set selected(value) {
     if (value) {
+      this._selected = true
       this.setAttribute('selected', '')
     }
     else {
+      this._selected = false
       this.removeAttribute('selected')
     }
   }
