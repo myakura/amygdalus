@@ -1,0 +1,18 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Custom toggle control</title>
+<style>
+</style>
+<body>
+
+<amygdalus-toggle id="toggle1"></amygdalus-toggle>
+<amygdalus-toggle id="toggle2" selected></amygdalus-toggle>
+<amygdalus-toggle id="toggle3" selected=""></amygdalus-toggle>
+<amygdalus-toggle id="toggle4" selected="true"></amygdalus-toggle>
+<amygdalus-toggle id="toggle5" selected="false"></amygdalus-toggle>
+<amygdalus-toggle id="toggle6" selected="🎩"></amygdalus-toggle>
+
+<script src="../js/AmygdalusToggle.js"></script>
+<script>
+  window.customElements.define('amygdalus-toggle', AmygdalusToggle)
+</script>
