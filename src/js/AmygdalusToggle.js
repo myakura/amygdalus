@@ -1,4 +1,3 @@
-
 class AmygdalusToggle extends HTMLElement {
   constructor () {
     super()
@@ -7,12 +6,11 @@ class AmygdalusToggle extends HTMLElement {
 
   static get observedAttributes() {
     return [
-      "selected"
+      'selected'
     ]
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    
   }
 
   connectedCallback() {
@@ -27,12 +25,9 @@ class AmygdalusToggle extends HTMLElement {
       this._selected = true
       this.setAttribute('selected', '')
     }
-    else if (value === false) {
+    if (value === false) {
       this._selected = false
       this.removeAttribute('selected')
-    }
-    else {
-
     }
   }
 
