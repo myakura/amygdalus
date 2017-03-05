@@ -17,14 +17,12 @@ class AmygdalusToggle extends HTMLElement {
     console.group(`attribute change: ${name}`)
     console.dir(this)
     console.log(`${name}: \`${oldValue}\` -> \`${newValue}\``)
-    console.log(`this._selected: ${this._selected}`)
     console.groupEnd()
   }
 
   connectedCallback() {
     console.group(`connected: ${this.id}`)
     console.dir(this)
-    console.log(`this._selected: ${this._selected}`)
     console.groupEnd()
   }
 
