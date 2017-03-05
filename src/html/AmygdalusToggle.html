@@ -28,13 +28,42 @@
 </script>
 
 <script>
-  const elements = document.querySelectorAll('amygdalus-toggle')
+  const allElements = document.querySelectorAll('amygdalus-toggle')
+  const selectedElements = document.querySelectorAll('amygdalus-toggle[selected]')
 
-  elements.forEach(element => {
-    console.group(`test: ${element.id}`)
+  allElements.forEach((element, index) => {
+    console.group(`test: ${element.id} is connected`)
     console.assert(element.isConnected, 'element is connected')
-    console.assert(element.hasAttribute('selected'), 'element has `selected` attribute')
-    console.assert(element.selected, 'element is selected')
     console.groupEnd()
   })
+
+  selectedElements.forEach((element, index) => {
+    console.group(`test: ${element.id} is selected`)
+    console.assert(element.hasAttribute('selected'), `${element.id} has \`selected\` attribute`)
+    console.assert(element.selected, `${element.id} is selected`)
+    console.groupEnd()
+  })
+
+  const toggle6 = document.querySelector('#toggle6')
+  toggle6.removeAttribute('selected')
+  console.group(`test: ${toggle6.id} after removing \`selected\` attribute`)
+  console.assert(!toggle6.hasAttribute('selected'), `${toggle6.id} doesn't have \`selected\` attribute`)
+  console.assert(!toggle6.selected, `${toggle6.id} isn't selected`)
+  console.groupEnd()
+
+  toggle6.setAttribute('selected', 'again!')
+  console.group(`test: ${toggle6.id} after regaining \`selected\` attribute`)
+  console.assert(toggle6.hasAttribute('selected'), `${toggle6.id} has \`selected\` attribute`)
+  console.assert(toggle6.selected, `${toggle6.id} is selected`)
+  console.assert(toggle6.getAttribute('selected') === 'again!', `${toggle6.id} has \`selected\` attribute and the value is \`again!\``)
+  console.groupEnd()
+
+  toggle6.selected = true
+  console.group(`test: ${toggle6.id} after setting \`selected\` property to \`true\``)
+  console.assert(toggle6.hasAttribute('selected'), `${toggle6.id} has \`selected\` attribute`)
+  console.assert(toggle6.selected, `${toggle6.id} is selected`)
+  console.assert(toggle6.getAttribute('selected') !== 'again!', `${toggle6.id} has \`selected\` attribute but the value isn't \`again!\``)
+  console.groupEnd()
+
+
 </script>
