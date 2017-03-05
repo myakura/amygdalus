@@ -14,5 +14,8 @@
   "bugs": {
     "url": "https://github.com/myakura/amygdalus/issues"
   },
-  "homepage": "https://github.com/myakura/amygdalus#readme"
+  "homepage": "https://github.com/myakura/amygdalus#readme",
+  "devDependencies": {
+    "eslint": "^3.17.0"
+  }
 }
