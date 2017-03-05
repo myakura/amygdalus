@@ -4,7 +4,7 @@ class AmygdalusToggle extends HTMLElement {
   constructor () {
     super()
     this._selected = false
-    console.log(`created: ${this.id}`)
+    console.log(`created: ${this.id ? this.id : this}`)
   }
 
   static get observedAttributes() {
@@ -16,14 +16,13 @@ class AmygdalusToggle extends HTMLElement {
   attributeChangedCallback(name, oldValue, newValue) {
     console.group(`attribute change: ${name}`)
     console.dir(this)
-    console.log(`${name}: \`${oldValue}\` -> \`${newValue}\``)
+    console.log(`${name}: \`${oldValue}\` → \`${newValue}\``)
     console.groupEnd()
   }
 
   connectedCallback() {
-    console.group(`connected: ${this.id}`)
+    console.log(`connected: ${this.id ? this.id : this}`)
     console.dir(this)
-    console.groupEnd()
   }
 
   get selected() {
