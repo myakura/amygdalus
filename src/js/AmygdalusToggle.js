@@ -20,6 +20,13 @@ class AmygdalusToggle extends HTMLElement {
     console.dir(this)
     console.log(`${name}: \`${oldValue}\` → \`${newValue}\``)
     console.groupEnd()
+
+    switch (name) {
+      case 'selected':
+        this._selected = true
+        this.setAttribute('aria-pressed', true)
+        break
+    }
   }
 
   connectedCallback() {
