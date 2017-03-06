@@ -20,6 +20,13 @@ module.exports = {
     "semi": [
       "error",
       "never"
+    ],
+    "indent": [
+      "error",
+      2,
+      {
+        "SwitchCase": 1
+      }
     ]
   }
 }
