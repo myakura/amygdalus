@@ -23,8 +23,15 @@ class AmygdalusSwitch extends HTMLElement {
 
     switch (name) {
       case 'selected':
-        this._selected = true
-        this.setAttribute('aria-pressed', 'true')
+        if (newValue !== null) {
+          this._selected = true
+          this.setAttribute('aria-pressed', 'true')
+        }
+        else {
+          // the value is null, meaning the attr is removed
+          this._selected = false
+          this.setAttribute('aria-pressed', 'false')
+        }
         break
     }
   }
