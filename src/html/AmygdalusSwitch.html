@@ -1,0 +1,87 @@
+<!doctype html>
+<meta charset="utf-8">
+<title>Custom switch control</title>
+<style>
+  amygdalus-switch {
+    display: block;
+    width: 2em;
+    height: 1em;
+    margin: 1em 0;
+    background-color: #ccc;
+  }
+  amygdalus-switch[selected] {
+    background-color: seagreen;
+  }
+</style>
+<body>
+
+<amygdalus-switch id="switch1"></amygdalus-switch>
+<amygdalus-switch id="switch2" selected></amygdalus-switch>
+<amygdalus-switch id="switch3" selected=""></amygdalus-switch>
+<amygdalus-switch id="switch4" selected="true"></amygdalus-switch>
+<amygdalus-switch id="switch5" selected="false"></amygdalus-switch>
+<amygdalus-switch id="switch6" selected="🎩"></amygdalus-switch>
+
+<script src="../js/AmygdalusSwitch.js"></script>
+<script>
+  window.customElements.define('amygdalus-switch', AmygdalusSwitch)
+</script>
+
+<script>
+  const allElements = document.querySelectorAll('amygdalus-switch')
+  const selectedElements = document.querySelectorAll('amygdalus-switch[selected]')
+
+  allElements.forEach((element, index) => {
+    console.group(`test: ${element.id} is connected`)
+    console.assert(element.isConnected, 'element is connected')
+    console.groupEnd()
+  })
+
+  const switch1 = document.querySelector('#switch1')
+  console.group(`test: connected element is focusable `)
+  console.assert(switch1.isConnected, `${switch1.id} is connected`)
+  console.assert(switch1.tabIndex === 0, `${switch1.id} is focusable`)
+  console.groupEnd()
+
+  selectedElements.forEach((element, index) => {
+    console.group(`test: ${element.id} is selected`)
+    console.assert(element.hasAttribute('selected'), `${element.id} has \`selected\` attribute`)
+    console.assert(element.selected, `${element.id} is selected`)
+    console.groupEnd()
+  })
+
+  const switch6 = document.querySelector('#switch6')
+  switch6.removeAttribute('selected')
+  console.group(`test: ${switch6.id} after removing \`selected\` attribute`)
+  console.assert(!switch6.hasAttribute('selected'), `${switch6.id} doesn't have \`selected\` attribute`)
+  console.assert(!switch6.selected, `${switch6.id} isn't selected`)
+  console.groupEnd()
+
+  switch6.setAttribute('selected', 'again!')
+  console.group(`test: ${switch6.id} after regaining \`selected\` attribute`)
+  console.assert(switch6.hasAttribute('selected'), `${switch6.id} has \`selected\` attribute`)
+  console.assert(switch6.selected, `${switch6.id} is selected`)
+  console.assert(switch6.getAttribute('selected') === 'again!', `${switch6.id} has \`selected\` attribute and the value is \`again!\``)
+  console.groupEnd()
+
+  switch6.selected = true
+  console.group(`test: ${switch6.id} after setting \`selected\` property to \`true\``)
+  console.assert(switch6.hasAttribute('selected'), `${switch6.id} has \`selected\` attribute`)
+  console.assert(switch6.selected, `${switch6.id} is selected`)
+  console.assert(switch6.getAttribute('selected') !== 'again!', `${switch6.id} has \`selected\` attribute but the value isn't \`again!\``)
+  console.groupEnd()
+
+  console.group(`test: disconnected elements lose focusability`)
+  const switchDisconnected = document.createElement('amygdalus-switch')
+  console.log(`switchDisconnected created`)
+  console.assert(!switchDisconnected.isConnected, `switchDisconnected isn't connected`)
+  document.body.append(switchDisconnected)
+  console.assert(switchDisconnected.isConnected, `switchDisconnected is connected`)
+  console.assert(switchDisconnected.tabIndex === 0, `switchDisconnected is focusable`)
+  switchDisconnected.remove()
+  console.assert(!switchDisconnected.isConnected, `switchDisconnected isn't connected`)
+  console.assert(switchDisconnected.tabIndex === -1, `switchDisconnected isn't focusable`)
+  console.groupEnd()
+
+
+</script>

@@ -1,6 +1,6 @@
 /*eslint no-unused-vars: "off"*/
 /*eslint no-console: "off"*/
-class AmygdalusToggle extends HTMLElement {
+class AmygdalusSwitch extends HTMLElement {
   constructor () {
     super()
     this._selected = false
