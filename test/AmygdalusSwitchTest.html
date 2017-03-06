@@ -23,12 +23,144 @@
 <amygdalus-switch id="switch5" selected="false"></amygdalus-switch>
 <amygdalus-switch id="switch6" selected="🎩"></amygdalus-switch>
 
-<script src="../src/js/AmygdalusSwitch.js"></script>
+<script src="/src/js/AmygdalusSwitch.js"></script>
 <script>
   window.customElements.define('amygdalus-switch', AmygdalusSwitch)
 </script>
 
 <script>
+  // testing general custom elements behaviours
+  // so they can be taken out
+  test(t => {
+    const unconnected = document.createElement('amygdalus-switch')
+    assert_false(unconnected.isConnected)
+  }, `script-generated custom elements are not connected`)
 
+  test(t => {
+    const unconnected = document.createElement('amygdalus-switch')
+    assert_equals(unconnected.attributes.length, 0)
+  }, `unconnected custom elements does not have any attributes set`)
+
+  test(t => {
+    const connected = document.querySelector('#connected')
+    assert_true(connected.isConnected)
+  }, `marked-up custom elements are connected`)
+
+  // connected elements
+  test(t => {
+    const connected = document.querySelector('#connected')
+    assert_greater_than(connected.attributes.length, 0)
+    assert_true(connected.hasAttributes('role'), 'has role')
+    assert_equals(connected.getAttribute('role'), 'button', 'has role of button')
+    assert_true(connected.hasAttributes('aria-pressed'), 'has aria-pressed')
+  }, `statically connected switch has some default attributes set`)
+
+  test(t => {
+    const connected = document.querySelector('#connected')
+    assert_false(connected.hasAttribute('selected'), 'do not have selected')
+    assert_false(connected.selected, 'seleced is not true')
+    assert_equals(connected.getAttribute('aria-pressed'), 'false', 'aria-pressed is false')
+  }, `statically connected switch is not selected by default`)
+
+  // dynamically connected elements
+  test(t => {
+    const dynconnected = document.createElement('amygdalus-switch')
+    document.querySelector('#connected').after(dynconnected)
+    assert_true(dynconnected.isConnected)
+    assert_greater_than(dynconnected.attributes.length, 0)
+    assert_true(dynconnected.hasAttributes('role'), 'has role')
+    assert_equals(dynconnected.getAttribute('role'), 'button', 'has role of button')
+    assert_true(dynconnected.hasAttributes('aria-pressed'), 'has aria-pressed')
+    assert_false(dynconnected.hasAttribute('selected'), 'do not have selected')
+    assert_false(dynconnected.selected, 'seleced is not true')
+    assert_equals(dynconnected.getAttribute('aria-pressed'), 'false', 'aria-pressed is false')
+  }, `dynamically connected switch behaves the same as statically connected switch`)
+
+  // statically selected switches
+  test(t => {
+    const selected1 = document.querySelector('#selected1')
+    assert_true(selected1.selected, 'is selected')
+    assert_true(selected1.hasAttribute('selected'), 'has selected')
+    assert_true(selected1.hasAttribute('aria-pressed'), 'has aria-pressed')
+    assert_equals(selected1.getAttribute('aria-pressed'), 'true', 'aria-pressed is true')
+  }, `switch with 'selected' attributes set is selected`)
+
+  test(t => {
+    const selected2 = document.querySelector('#selected2')
+    assert_true(selected2.selected, 'is selected')
+    assert_true(selected2.hasAttribute('selected'), 'has selected')
+    assert_not_equals(selected2.getAttribute('selected'), '', 'seleced is not an empty string')
+    assert_not_equals(selected2.getAttribute('selected'), 'selected', 'selected is not the string selected')
+    assert_equals(selected2.getAttribute('selected'), '🎩', 'selected is an emoji of a hat')
+    assert_true(selected2.hasAttribute('aria-pressed'), 'has aria-pressed')
+    assert_equals(selected2.getAttribute('aria-pressed'), 'true', 'aria-pressed is true')
+  }, `switch having 'selected' with invalid value is still selected`)
+
+  // dynamically selected switches
+  test(t => {
+    const dynselected1 = document.querySelector('#dynselected1')
+    dynselected1.setAttribute('selected', '')
+    assert_true(dynselected1.selected, 'is selected')
+    assert_true(dynselected1.hasAttribute('aria-pressed'), 'has aria-pressed')
+    assert_equals(dynselected1.getAttribute('aria-pressed'), 'true', 'aria-pressed is true')
+  }, `switch where 'selected' attribute is dynamically added is selected`)
+
+  test(t => {
+    const dynselected2 = document.querySelector('#dynselected2')
+    dynselected2.selected = true
+    assert_true(dynselected2.hasAttribute('selected'), 'has selected')
+    assert_true(dynselected2.hasAttribute('aria-pressed'), 'has aria-pressed')
+    assert_equals(dynselected2.getAttribute('aria-pressed'), 'true', 'aria-pressed is true')
+  }, `switch where 'selected' property is dynamically set to true is selected`)
+
+  // dynamically unselected switches
+  test(t => {
+    const unselected1 = document.querySelector('#unselected1')
+    unselected1.removeAttribute('selected')
+    assert_false(unselected1.selected, 'is not selected')
+    assert_equals(unselected1.getAttribute('aria-pressed'), 'false', 'aria-pressed is false')
+    assert_true(true)
+  }, `switch whose 'selected' attribute taken out is not selected`)
+
+  test(t => {
+    const unselected2 = document.querySelector('#unselected2')
+    unselected2.selected = false
+    assert_false(unselected2.selected, 'is not selected')
+    assert_equals(unselected2.getAttribute('aria-pressed'), 'false', 'aria-pressed is false')
+    assert_true(true)
+  }, `switch whose 'selected' property is set to false is not selected`)
+
+  // attribute change
+  test(t => {
+    const attmodified = document.querySelector('#attmodified')
+    assert_true(attmodified.selected, 'is selected')
+    assert_equals(attmodified.getAttribute('selected'), 'before', 'selected has the value of "before"')
+    attmodified.setAttribute('selected', 'after')
+    assert_true(attmodified.selected, 'is selected')
+    assert_equals(attmodified.getAttribute('selected'), 'after', 'selected has the value of "after"')
+  }, `switch whose value of 'selected' attribute changed to something else is still selected`)
+
+  // property change
+  test(t => {
+    const reselected = document.querySelector('#reselected')
+    assert_true(reselected.selected, 'is selected')
+    assert_equals(reselected.getAttribute('selected'), 'before', 'selected has the value of "before"')
+    reselected.selected = true
+    assert_equals(reselected.getAttribute('selected'), '', 'selected has an empty string')
+    assert_not_equals(reselected.getAttribute('selected'), 'before', 'selected does not have the value "before"')
+  }, `switch whose 'selected' property set to true loses the value of 'selected' attribute`)
+
+  // testing focusability 
+  test(t => {
+    const unconnected = document.createElement('amygdalus-switch')
+    assert_not_equals(unconnected.tabIndex, 0)
+  }, `unconnected custom elements is not focusable`)
+
+  test(t => {
+    const connected = document.querySelector('#connected')
+    assert_equals(connected.tabIndex, 0)
+  }, `newly connected custom elements is focusable`)
+
+  // todo: add tests checking for focusability on dynamically modified switches
 
 </script>
