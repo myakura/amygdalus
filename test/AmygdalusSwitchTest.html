@@ -2,11 +2,14 @@
 <meta charset="utf-8">
 <title>Custom switch control</title>
 <style>
+  #switches {
+    display: flex;
+  }
   amygdalus-switch {
     display: block;
     width: 2em;
     height: 1em;
-    margin: 1em 0;
+    margin: .5em;
     background-color: #ccc;
   }
   amygdalus-switch[selected] {
@@ -16,12 +19,18 @@
 <script src="/resources/testharness.js"></script>
 <body>
 
-<amygdalus-switch id="switch1"></amygdalus-switch>
-<amygdalus-switch id="switch2" selected></amygdalus-switch>
-<amygdalus-switch id="switch3" selected=""></amygdalus-switch>
-<amygdalus-switch id="switch4" selected="true"></amygdalus-switch>
-<amygdalus-switch id="switch5" selected="false"></amygdalus-switch>
-<amygdalus-switch id="switch6" selected="🎩"></amygdalus-switch>
+<div id="switches">
+<amygdalus-switch id="connected"></amygdalus-switch>
+<amygdalus-switch id="selected1" selected></amygdalus-switch>
+<amygdalus-switch id="selected2" selected="🎩"></amygdalus-switch>
+<amygdalus-switch id="dynselected1"></amygdalus-switch>
+<amygdalus-switch id="dynselected2"></amygdalus-switch>
+<amygdalus-switch id="unselected1" selected></amygdalus-switch>
+<amygdalus-switch id="unselected2" selected></amygdalus-switch>
+<amygdalus-switch id="attmodified" selected="before"></amygdalus-switch>
+<amygdalus-switch id="reselected" selected="before"></amygdalus-switch>
+<amygdalus-switch id="disconnected"></amygdalus-switch>
+</div>
 
 <script src="/src/js/AmygdalusSwitch.js"></script>
 <script>
