@@ -37,6 +37,12 @@
     console.groupEnd()
   })
 
+  const toggle1 = document.querySelector('#toggle1')
+  console.group(`test: connected element is focusable `)
+  console.assert(toggle1.isConnected, `${toggle1.id} is connected`)
+  console.assert(toggle1.tabIndex === 0, `${toggle1.id} is focusable`)
+  console.groupEnd()
+
   selectedElements.forEach((element, index) => {
     console.group(`test: ${element.id} is selected`)
     console.assert(element.hasAttribute('selected'), `${element.id} has \`selected\` attribute`)
