@@ -7,6 +7,16 @@ class AmygdalusSwitch extends HTMLElement {
     console.group(`created${this.id ? `: #${this.id}` : ''}`)
     console.dir(this)
     console.groupEnd()
+
+    const switchShadowRoot = this.attachShadow({ mode: 'open' })
+    switchShadowRoot.innerHTML =
+`
+<link rel="stylesheet" href="/src/css/AmygdalusSwitch.css">
+<div id="switch-container">
+  <div id="switch-track"></div>
+  <div id="switch-thumb"></div>
+</div>
+`
   }
 
   static get observedAttributes() {
