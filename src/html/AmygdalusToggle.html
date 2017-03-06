@@ -71,5 +71,17 @@
   console.assert(toggle6.getAttribute('selected') !== 'again!', `${toggle6.id} has \`selected\` attribute but the value isn't \`again!\``)
   console.groupEnd()
 
+  console.group(`test: disconnected elements lose focusability`)
+  const toggleDisconnected = document.createElement('amygdalus-toggle')
+  console.log(`toggleDisconnected created`)
+  console.assert(!toggleDisconnected.isConnected, `toggleDisconnected isn't connected`)
+  document.body.append(toggleDisconnected)
+  console.assert(toggleDisconnected.isConnected, `toggleDisconnected is connected`)
+  console.assert(toggleDisconnected.tabIndex === 0, `toggleDisconnected is focusable`)
+  toggleDisconnected.remove()
+  console.assert(!toggleDisconnected.isConnected, `toggleDisconnected isn't connected`)
+  console.assert(toggleDisconnected.tabIndex === -1, `toggleDisconnected isn't focusable`)
+  console.groupEnd()
+
 
 </script>
