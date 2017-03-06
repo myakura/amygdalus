@@ -32,6 +32,11 @@ class AmygdalusToggle extends HTMLElement {
   connectedCallback() {
     console.log(`connected: ${this.id ? this.id : this}`)
     console.dir(this)
+    this.tabIndex = 0
+  }
+
+  disconnectedCallback() {
+    this.tabIndex = -1
   }
 
   get selected() {
