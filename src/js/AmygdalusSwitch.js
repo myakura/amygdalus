@@ -4,7 +4,9 @@ class AmygdalusSwitch extends HTMLElement {
   constructor () {
     super()
     this._selected = false
-    console.log(`created: ${this.id ? this.id : this}`)
+    console.group(`created${this.id ? `: #${this.id}` : ''}`)
+    console.dir(this)
+    console.groupEnd()
   }
 
   static get observedAttributes() {
@@ -14,7 +16,7 @@ class AmygdalusSwitch extends HTMLElement {
   }
 
   attributeChangedCallback(name, oldValue, newValue) {
-    console.group(`attribute change: ${name}`)
+    console.group(`attribute value change`)
     console.dir(this)
     console.log(`${name}: \`${oldValue}\` → \`${newValue}\``)
     console.groupEnd()
@@ -31,8 +33,9 @@ class AmygdalusSwitch extends HTMLElement {
     this.setAttribute('aria-role', 'button')
     this.setAttribute('aria-pressed', 'false')
     this.tabIndex = 0
-    console.log(`connected: ${this.id ? this.id : this}`)
+    console.group(`connected${this.id ? `: #${this.id}` : ''}`)
     console.dir(this)
+    console.groupEnd()
   }
 
   disconnectedCallback() {
