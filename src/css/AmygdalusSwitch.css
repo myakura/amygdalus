@@ -12,6 +12,12 @@
   position: relative;
 }
 
+#switch-track,
+#switch-thumb {
+  transition-duration: 150ms;
+  transition-property: left color;
+}
+
 #switch-track {
   width: 36px;
   height: 20px;
