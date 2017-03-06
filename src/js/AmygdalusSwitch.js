@@ -30,7 +30,7 @@ class AmygdalusSwitch extends HTMLElement {
   }
 
   connectedCallback() {
-    this.setAttribute('aria-role', 'button')
+    this.setAttribute('role', 'button')
     this.setAttribute('aria-pressed', 'false')
     this.tabIndex = 0
     console.group(`connected${this.id ? `: #${this.id}` : ''}`)
