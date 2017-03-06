@@ -25,7 +25,8 @@
   width: 18px;
   height: 18px;
   position: absolute;
-  top: 1px; left: 1px;
+  top: 1px;
+  left: 1px;
 
   background-color: #fff;
   border-radius: 18px;
@@ -37,6 +38,5 @@
 
 :host([selected]) #switch-thumb {
   background-color: #fff;
-  left: auto;
-  right: 1px;
+  left: 17px;
 }
