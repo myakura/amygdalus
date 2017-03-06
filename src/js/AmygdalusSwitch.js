@@ -24,7 +24,7 @@ class AmygdalusSwitch extends HTMLElement {
     switch (name) {
       case 'selected':
         this._selected = true
-        this.setAttribute('aria-pressed', true)
+        this.setAttribute('aria-pressed', 'true')
         break
     }
   }
