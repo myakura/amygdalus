@@ -50,6 +50,11 @@ class AmygdalusSwitch extends HTMLElement {
     this.setAttribute('role', 'button')
     this.setAttribute('aria-pressed', `${this._selected}`)
     this.tabIndex = 0
+
+    this.addEventListener('click', e => {
+      this.selected = !this.selected
+    })
+
     console.group(`connected${this.id ? `: #${this.id}` : ''}`)
     console.dir(this)
     console.groupEnd()
